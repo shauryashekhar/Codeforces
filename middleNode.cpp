@@ -9,15 +9,19 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        if(!head) {
-            return NULL;
-        }
         ListNode* ptr1x = head;
         ListNode* ptr2x = head;
-        while(ptr1x && ptr2x && ptr2x->next) {
-            ptr1x = ptr1x->next;
-            ptr2x = ptr2x->next->next;
+        int i = 0;
+        while(ptr1x) {
+            if(i == 0) {
+                ptr1x = ptr1x -> next;
+                i = 1;
+            } else {
+                ptr1x = ptr1x -> next;
+                ptr2x = ptr2x -> next;
+                i = 0;
+            }
         }
-        return ptr1x;
+        return ptr2x;
     }
 };
