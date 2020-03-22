@@ -6,16 +6,12 @@
 using namespace std;
 
 string getBinary(int x) {
-    vector<int> v;
+    string resultString = "";
     while(x != 0) {
         int digit = x % 2;
-        v.insert(v.begin(), digit);
+        char number = digit + '0';
+        resultString.insert(resultString.begin(), number);
         x = x/2;
-    }
-    string resultString = "";
-    for(int y : v) {
-        char number = y + '0';
-        resultString = resultString + number; 
     }
     return resultString;
 }
@@ -49,7 +45,7 @@ int main() {
 	        }
 	       // cout<<s1<<" "<<s2<<endl;
 	       // cout<<s1.size()<<" "<<s2.size()<<endl;
-	        for(int k = 0; k < max(s1.size(), s2.size()); k++) {
+	        for(int k = 0; k < s1.size(); k++) {
 	           // cout<<"For k value "<<k<<endl;
 	           // cout<<s1[k]<<" "<<s2[k]<<endl;
 	            if(s2[k] == '1' && s1[k] == '1') {
