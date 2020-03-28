@@ -10,21 +10,15 @@
 class Solution {
 public:
     int sumEvenGrandparent(TreeNode* root) {
-        int result = 0;
         if(!root) {
-            return result;
+            return 0;
         }
         queue<TreeNode*> q;
         q.push(root);
+        int result = 0;
         while(!q.empty()) {
             TreeNode* temp = q.front();
             q.pop();
-            if(temp->left) {
-                q.push(temp->left);
-            }
-            if(temp->right) {
-                q.push(temp->right);
-            }
             if(temp->val % 2 == 0) {
                 if(temp->left) {
                     if(temp->left->left) {
@@ -42,6 +36,12 @@ public:
                         result = result + temp->right->right->val;
                     }
                 }
+            }
+            if(temp->left) {
+                q.push(temp->left);
+            }
+            if(temp->right) {
+                q.push(temp->right);
             }
         }
         return result;
