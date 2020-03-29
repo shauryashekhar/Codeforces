@@ -1,20 +1,19 @@
 class Solution {
 public:
-    void moveZeroes(vector<int>& nums) {
+    int removeElement(vector<int>& nums, int val) {
+        int result = nums.size();
         if(nums.size() == 0) {
-            return;
+            return result;
         }
         int count = 0;
-        int size = nums.size();
         for(int i = 0; i < nums.size(); i++) {
-            if(nums[i] != 0) {
+            if(nums[i] != val) {
                 nums[count] = nums[i];
                 count++;
+            } else {
+                result--;
             }
         }
-        while(count < size) {
-            nums[count] = 0;
-            count++;
-        }
+        return result;
     }
 };
