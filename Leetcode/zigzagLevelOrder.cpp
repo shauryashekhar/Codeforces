@@ -9,29 +9,29 @@
  */
 class Solution {
 public:
-    int deepestLeavesSum(TreeNode* root) {
-        int result = 0;
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> result;
         if(!root) {
             return result;
         }
+        map<int, vector<int>> m;
+        int level = 0;
         queue<TreeNode*> q;
         q.push(root);
         q.push(NULL);
-        map<int, vector<int>> m;
-        int l = 0;
-        vector<int> level;
+        vector<int> v;
         while(!q.empty()) {
             TreeNode* temp = q.front();
             q.pop();
             if(temp == NULL) {
-                m[l] = level;
-                l++;
-                level.clear();
+                m[level] = v;
+                v.clear();
+                level++;
                 if(!q.empty()) {
                     q.push(NULL);
                 }
             } else {
-                level.push_back(temp->val);
+                v.push_back(temp->val);
                 if(temp->left) {
                     q.push(temp->left);
                 }
@@ -40,12 +40,21 @@ public:
                 }
             }
         }
-        for(auto itr = m.rbegin(); itr != m.rend(); itr++) {
-            vector<int> tv = itr->second;
-            for(int x : tv) {
-                result = result + x;
+        vector<int> rootLevel = m[0];
+        result.push_back(rootLevel);
+        for(int i = 1; i < level; i++) {
+            vector<int> l = m[i];
+            vector<int> t;
+            if(i % 2 == 0) {
+                for(auto itr = l.begin(); itr != l.end(); itr++) {
+                    t.push_back(*itr);
+                }
+            } else {
+                for(auto itr = l.rbegin(); itr != l.rend(); itr++) {
+                    t.push_back(*itr);
+                }
             }
-            break;
+            result.push_back(t);
         }
         return result;
     }
