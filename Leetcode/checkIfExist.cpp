@@ -1,18 +1,22 @@
 class Solution {
 public:
     bool checkIfExist(vector<int>& arr) {
-        if(arr.size() == 0) {
+        if(arr.size() == 0 || arr.size() == 1) {
             return false;
         }
-        for(int i = 0; i < arr.size(); i++) {
-            for(int j = 0; j < arr.size(); j++) {
-                if(i != j) {
-                    if(arr[i] == 2 * arr[j]) {
-                        return true;
-                    } else if(arr[j] == 2 * arr[i]) {
-                        return true;
-                    }
-                }
+        multiset<int> s;
+        int c0 = 0;
+        for(int x : arr) {
+            if(x == 0) {
+                c0++;
+            }
+            s.insert(x);
+        }
+        for(int i : arr) {
+            if(i == 0 && c0 > 1) {
+                return true;
+            } else if(i != 0 && s.count(i*2)) {
+                return true;
             }
         }
         return false;

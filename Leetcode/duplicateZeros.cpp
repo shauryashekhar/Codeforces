@@ -8,10 +8,9 @@ public:
         for(int i = 0; i < size; i++) {
             if(arr[i] == 0) {
                 arr.insert(arr.begin() + i, 0);
-                arr.pop_back();
                 i++;
+                arr.pop_back();
             }
         }
-        return;
     }
 };
