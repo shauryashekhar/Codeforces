@@ -1,16 +1,22 @@
 class Solution {
 public:
-    int numJewelsInStones(string J, string S) {
-        set<char> s;
-        for(int i = 0; i < J.size(); i++) {
-            s.insert(J[i]);
+    int numJewelsInStones(string jewels, string stones) {
+        if (jewels.size() == 0) {
+            return 0;
         }
-        int count = 0;
-        for(int j = 0; j < S.size(); j++) {
-            if(s.count(S[j])) {
-                count++;
+        if (stones.size() == 0) {
+            return 0;
+        }
+        int result = 0;
+        set<char> s;
+        for(char c : jewels) {
+            s.insert(c);
+        }
+        for(char cs : stones) {
+            if(s.count(cs)) {
+                result++;
             }
         }
-        return count;
+        return result;
     }
 };
