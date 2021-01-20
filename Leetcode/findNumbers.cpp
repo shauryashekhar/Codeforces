@@ -1,16 +1,15 @@
 class Solution {
 public:
     int findNumbers(vector<int>& nums) {
-        if(nums.size() == 0) {
-            return 0;
-        }
         int result = 0;
+        if(nums.size() == 0) {
+            return result;
+        }
         for(int x : nums) {
-            int temp = x;
             int count = 0;
-            while(temp != 0) {
+            while(x != 0) {
+                x = x/10;
                 count++;
-                temp = temp / 10;
             }
             if(count % 2 == 0) {
                 result++;

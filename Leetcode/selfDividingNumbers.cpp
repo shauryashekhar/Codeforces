@@ -2,28 +2,28 @@ class Solution {
 public:
     vector<int> selfDividingNumbers(int left, int right) {
         vector<int> result;
-        for(int i = left; i <= right; i++) {
-            int checkAgainst = i;
-            int number = i;
-            int add = 1;
-            while(number != 0) {
-                int lastDigit = number % 10;
-                if(lastDigit == 0) {
-                    add = 0;
-                } else {
-                    int remainder = checkAgainst % lastDigit;
-                    if(remainder != 0){
-                        // cout<<"For checkAgainst "<<checkAgainst<<" set"<<endl;
-                        add = 0;
+        for(int num = left; num <= right; num++) {
+            int temp = num;
+            int isOK = 1;
+            while(temp != 0) {
+                int digit = temp % 10;
+                temp = temp / 10;
+                if(digit != 0) {
+                    if(num % digit == 0) {
+                        continue;
+                    } else {
+                        isOK = 0;
+                        break;
                     }
+                } else {
+                    isOK = 0;
+                    break;
                 }
-                number = number / 10;
             }
-            if(add == 1) {
-                result.push_back(checkAgainst);
+            if(isOK) {
+                result.push_back(num);
             }
         }
-        
         return result;
     }
 };
