@@ -5,14 +5,14 @@ public:
             return true;
         }
         map<int, int> m;
-        for(int i = 0; i < arr.size(); i++) {
-            if(m.count(arr[i])) {
-                m[arr[i]] = m[arr[i]] + 1;
+        set<int> s;
+        for(int x : arr) {
+            if(m.count(x)) {
+                m[x] = m[x] + 1;
             } else {
-                m[arr[i]] = 1;
+                m[x] = 1;
             }
         }
-        set<int> s;
         for(auto itr = m.begin(); itr != m.end(); itr++) {
             s.insert(itr->second);
         }
